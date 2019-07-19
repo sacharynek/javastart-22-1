@@ -12,11 +12,16 @@ public class Product {
         this.price = price;
     }
 
-    Double getPrice() {
+    public Double getPrice() {
         return price;
     }
+    public String getPriceAsString(){
+        return price.toString();
+    }
 
-
+    public String getName() {
+        return name;
+    }
 
     @Override
     public String toString() {

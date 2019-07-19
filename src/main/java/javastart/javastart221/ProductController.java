@@ -1,6 +1,7 @@
 package javastart.javastart221;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,32 +22,27 @@ public class ProductController {
         this.productRepository = productRepository;
     }
 
-    @ResponseBody
+
     @GetMapping("/lista")
-    public String productsInList() {
-        List<Product> products;
-        Double price;
+    public String productsInList(Model model) {
 
+        model.addAttribute("products", productRepository.getProductList());
+        model.addAttribute("price", productRepository.getTotalPrice());
 
-        products = productRepository.getProductList();
-        price = productRepository.getTotalPrice();
-
-
-        return products.toString() + "<h2> Total Price = " + price + "</h2>";
+        return "list";
     }
 
-    @ResponseBody
+
     @GetMapping("/tabela")
-    public String productsInTable() {
-        List<Product> products;
-        Double price;
+    public String productsInTable(Model model) {
 
 
-        products = productRepository.getProductList();
-        price = productRepository.getTotalPrice();
+
+        model.addAttribute("products", productRepository.getProductList());
+        model.addAttribute("price", productRepository.getTotalPrice());
 
 
-        return products.toString() + "<h2> Total Price = " + price + "</h2>";
+        return "table";
     }
 
     @RequestMapping("/add")
