@@ -22,28 +22,38 @@ public class ProductController {
     }
 
     @ResponseBody
-    @GetMapping("/products")
-    public String products(@RequestParam String category) {
+    @GetMapping("/lista")
+    public String productsInList() {
         List<Product> products;
         Double price;
 
-        if (category.equals("All")) {
-            products = productRepository.getProductList();
-            price = productRepository.getTotalPrice();
-        } else {
-            products = productRepository.search(category);
-            price = productRepository.getCategorylPrice(category);
-        }
+
+        products = productRepository.getProductList();
+        price = productRepository.getTotalPrice();
+
+
+        return products.toString() + "<h2> Total Price = " + price + "</h2>";
+    }
+
+    @ResponseBody
+    @GetMapping("/tabela")
+    public String productsInTable() {
+        List<Product> products;
+        Double price;
+
+
+        products = productRepository.getProductList();
+        price = productRepository.getTotalPrice();
+
 
         return products.toString() + "<h2> Total Price = " + price + "</h2>";
     }
 
     @RequestMapping("/add")
     public String addProduct(@RequestParam(defaultValue = "nieznany", required = true) String name
-            , @RequestParam(required = true) String category
             , @RequestParam(required = true) double price) {
 
-        getProductRepository().addProduct(new Product(name, category, price));
+        getProductRepository().addProduct(new Product(name, price));
         return "redirect:/index.html";
 
     }

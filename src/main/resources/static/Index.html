@@ -6,16 +6,26 @@
 </head>
 <body>
 <br>
-<a href="/products?category=All">Wyświetl wszystkie produkty</a>
+<a href="/lista">Lista</a>
 <br>
-<a href="/products?category=AGD">Wyświetl produkty gospodarstwa domowego</a>
-<br>
-<a href="/products?category=Food">Wyświetl produkty spożywcze</a>
-<br>
-<a href="/products?category=Other">Wyświetl inne produkty</a>
+<a href="/tabela">Tabela</a>
 <br>
 
-<a href="AddProduct.html">Dodaj produkt</a>
+
+<form method="post" action="/add">
+  <fieldset>
+    <legend>
+      <br/>
+      <input type="text" name="name" placeholder="Name"/>
+      <br/>
+
+
+      <input type="text" name="price" placeholder="Price"/>
+      <br/>
+      <button type="submit">Dodaj</button>
+    </legend>
+  </fieldset>
+</form>
 
 </body>
 </html>
